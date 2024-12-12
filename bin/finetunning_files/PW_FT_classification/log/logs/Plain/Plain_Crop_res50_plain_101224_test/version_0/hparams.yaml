@@ -1,0 +1,49 @@
+algorithm: Plain
+annotation_dir: ./data/imgs
+batch_size: 32
+conf_id: Crop_res50_plain_101224_test
+dataset_name: Custom_Crop
+dataset_root: ./data/imgs
+evaluate: null
+gamma: 0.1
+id_to_labels:
+  0: AVES
+  1: BASSSEISCUS_ASTUTUS
+  2: CONEPATUS_LEUCONOTUS
+  3: DIDELPHIS_VIRGINIATA
+  4: GANADO
+  5: LEOPARDU_wiedii
+  6: LYNX_RUFUS
+  7: MEPITIS_MACROURA
+  8: NASUA_NARICA
+  9: ODOCOILEUS_VIRGINIANUS
+  10: PECARI_TAJACU
+  11: PUMA_CONCOLOR
+  12: SCIURUS_OCOLATUS
+  13: SPILOGALE_GRACILIS
+  14: SYLVILAGUS_SP
+  15: UROCYON_CINEREORGENTEUS
+log_dir: logs
+log_interval: 10
+lr_classifier: 0.01
+lr_feature: 0.01
+model_name: PlainResNetClassifier
+momentum_classifier: 0.9
+momentum_feature: 0.9
+num_classes: 16
+num_epochs: 30
+num_layers: 50
+num_workers: 8
+parallel: 0
+predict: false
+predict_root: ''
+split_data: true
+split_path: ./data/imgs/annotation_example.csv
+split_type: sequence
+step_size: 10
+test_size: 0.2
+val: false
+val_size: 0.2
+weight_decay_classifier: 0.0005
+weight_decay_feature: 0.0005
+weights_init: ImageNet

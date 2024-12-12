@@ -10,33 +10,52 @@
 
 ### Aditional information ###
 
+# Tools:
+# Pytorch-Wildlife
+
+# Installation instructions:
+# 1. Create conda environment `conda create -n pytorch_wildlife python=3.8 -y` `conda activate pytorch_wildlife`
+# 2. Install using `pip install PytorchWildlife`
+
+# Detection model: MegaDetector V6
 # MegaDetector repository: https://github.com/agentmorris/MegaDetector/tree/main
 # MegaDetector package: https://pypi.org/project/megadetector/
 
-# Installation instructions:
-# 1. Create conda environment `conda create -n megadetector` `conda activate megadetector`
-# 2. Install using `pip install megadetector`
+# Image Detector PyTorchWildlife
 
-###
+# --- Import packages ---
 
-# --- Run MegaDetector on a folder of images ---
-
-from megadetector.detection.run_detector_batch import load_and_run_detector_batch, write_results_to_file
-from megadetector.utils import path_utils
+import numpy as np
 import os
+from PIL import Image
+import torch
+from torch.utils.data import DataLoader
+from PytorchWildlife.models import detection as pw_detection
+from PytorchWildlife.data import transforms as pw_trans
+from PytorchWildlife.data import datasets as pw_data
+from PytorchWildlife import utils as pw_utils
 
-# Pick a folder to run MD on recursively, and an output file
-image_folder = os.path.expanduser('~/megadetector_test_images')
-output_file = os.path.expanduser('~/megadetector_output_test.json')
+# --- Model initialization ---
 
-# Recursively find images
-image_file_names = path_utils.find_images(image_folder,recursive=True)
+DEVICE = "cpu"  # Use "cuda" if GPU is available "cpu" if no GPU is available
+detection_model = pw_detection.MegaDetectorV6(device=DEVICE, pretrained=True, version="yolov9c")
 
-# This will automatically download MDv5a; you can also specify a filename.
-results = load_and_run_detector_batch('MDV5A', image_file_names)
 
-# Write results to a format that Timelapse and other downstream tools like.
-write_results_to_file(results,
-                      output_file,
-                      relative_path_base=image_folder,
-                      detector_file=detector_filename)
+# --- Single image detection ---
+
+tgt_img_path = os.path.join("/mnt", "STORAGE", "csar", "pipo_images", "PUMA_CONCOLOR_2022", "I_00058a.JPG")
+results = detection_model.single_image_detection(tgt_img_path)
+pw_utils.save_detection_images(results, os.path.join(".","demo_output"), overwrite=False)
+
+
+tgt_img_path = "/mnt/STORAGE/csar/pipo_images/PUMA_CONCOLOR_2022/I_00058a.JPG"
+img = np.array(Image.open(tgt_img_path).convert("RGB"))
+transform = pw_trans.MegaDetector_v6_Transform(target_size=detection_model.IMAGE_SIZE,stride=detection_model.STRIDE)
+detection_result = detection_model.single_image_detection(img)
+
+pw_utils.save_detection_images(detection_result, "./output.JPG")
+pw_utils.save_detection_images(detection_result, "batch_output")
+pw_utils.save_detection_json(detection_result, "./batch_output.json",categories=detection_model.CLASS_NAMES)
+
+
+print(detection_result)

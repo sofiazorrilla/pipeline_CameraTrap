@@ -2,3 +2,10 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Ignore output foilder
+output/
+
+# Ignore data for training
+bin/finetunning_files/PW_FT_classification/data/imgs/*.JPG
+bin/finetunning_files/PW_FT_classification/data/imgs/cropped_resized/*.JPG
