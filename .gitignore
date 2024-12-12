@@ -9,3 +9,6 @@ output/
 # Ignore data for training
 bin/finetunning_files/PW_FT_classification/data/imgs/*.JPG
 bin/finetunning_files/PW_FT_classification/data/imgs/cropped_resized/*.JPG
+
+# Ignore model
+bin/finetunning_files/PW_FT_classification/weights/logs/Plain/Crop_res50_plain_101224_test-0-epoch=14-valid_mac_acc=52.63.ckpt
