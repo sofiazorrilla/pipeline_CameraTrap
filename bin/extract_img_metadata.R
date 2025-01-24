@@ -1,5 +1,5 @@
 ######
-# Script : title
+# Script : Generar tabla de metadatos para las imagenes generadas por las camaras trampa
 # Author: Sofía Zorrilla and César Díaz
 # Date: 2024-12-08
 # Description: Extraction of metadata from image folders

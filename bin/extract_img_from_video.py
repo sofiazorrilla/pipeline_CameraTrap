@@ -119,3 +119,4 @@ if __name__ == "__main__":
    input_root = "/mnt/STORAGE/csar/pipo_images"  # Replace with the path to your main directory
    output_root = "../data/images_from_videos"  # Replace with the path to save extracted frames
    main(input_root, output_root, max_workers=20)
+
