@@ -17,12 +17,10 @@ id_to_labels:
   7: MEPITIS_MACROURA
   8: NASUA_NARICA
   9: ODOCOILEUS_VIRGINIANUS
-  10: PECARI_TAJACU
-  11: PUMA_CONCOLOR
   12: SCIURUS_OCOLATUS
   13: SPILOGALE_GRACILIS
   14: SYLVILAGUS_SP
-  15: UROCYON_CINEREORGENTEUS
+  19: ROEDORES
 log_dir: logs
 log_interval: 10
 lr_classifier: 0.01
@@ -30,16 +28,16 @@ lr_feature: 0.01
 model_name: PlainResNetClassifier
 momentum_classifier: 0.9
 momentum_feature: 0.9
-num_classes: 16
+num_classes: 19
 num_epochs: 30
 num_layers: 50
-num_workers: 8
+num_workers: 16
 parallel: 0
 predict: false
 predict_root: ''
 split_data: true
 split_path: ./data/imgs/annotation_example.csv
-split_type: sequence
+split_type: location
 step_size: 10
 test_size: 0.2
 val: false

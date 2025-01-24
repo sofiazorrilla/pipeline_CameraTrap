@@ -26,7 +26,7 @@ app = typer.Typer(pretty_exceptions_short=True, pretty_exceptions_show_locals=Fa
 # %%
 @app.command()
 def main(
-        config:str='./configs/Raw/Crop_res50_plain_101224_test.yaml',
+        config:str='./configs/Raw/Crop_res50_plain_230125.yaml',
         project:str='Custom-classification',
         gpus:str='0', 
         logger_type:str='csv',
@@ -97,6 +97,7 @@ def main(
     train_annotations = os.path.join(conf.dataset_root, 'train_annotations.csv')
     test_annotations = os.path.join(conf.dataset_root, 'test_annotations.csv')
     val_annotations = os.path.join(conf.dataset_root, 'val_annotations.csv')
+    
     # Crop training data
     batch_detection_cropping.batch_detection_cropping(conf.dataset_root, os.path.join(conf.dataset_root, "cropped_resized"), train_annotations)
     # Crop validation data
